@@ -1,6 +1,8 @@
 <?php
 
-namespace Swis\PHPStan\ErrorFormatter;
+declare(strict_types=1);
+
+namespace Swis\Bitbucket\Reports;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
@@ -16,9 +18,9 @@ class BitbucketApiClient
 
     private const PROXY_URL = 'http://localhost:29418';
 
-    private const REPORT_TITLE = 'PHPStan Report';
-
     private Client $httpClient;
+
+    private ParentDirectoryRelativePathHelper $relativePathHelper;
 
     public function __construct(string $baseUrl = self::BASE_URL, string $proxyUrl = self::PROXY_URL)
     {
@@ -26,19 +28,20 @@ class BitbucketApiClient
             'base_uri' => $baseUrl,
             RequestOptions::PROXY => $proxyUrl,
         ]);
+        $this->relativePathHelper = new ParentDirectoryRelativePathHelper(BitbucketConfig::cloneDir());
     }
 
-    public function createReport(int $numberOfIssues = 0): UuidInterface
+    public function createReport(string $title, int $numberOfIssues = 0): UuidInterface
     {
         $payload = $numberOfIssues > 0
             ? [
-                'title' => self::REPORT_TITLE,
+                'title' => $title,
                 'details' => sprintf('This PR introduces %d new issue(s).', $numberOfIssues),
                 'report_type' => 'BUG',
                 'result' => 'FAILED',
             ]
             : [
-                'title' => self::REPORT_TITLE,
+                'title' => $title,
                 'details' => 'This PR introduces no new issues.',
                 'report_type' => 'BUG',
                 'result' => 'PASSED',
@@ -65,7 +68,7 @@ class BitbucketApiClient
         ];
 
         if ($filePath !== null) {
-            $payload['path'] = $filePath;
+            $payload['path'] = $this->relativePathHelper->getRelativePath($filePath);
         }
 
         if ($line !== null) {

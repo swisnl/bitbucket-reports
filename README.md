@@ -1,4 +1,4 @@
-# PHPStan Bitbucket error formatter
+# Bitbucket reports
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
@@ -6,40 +6,19 @@
 [![Total Downloads][ico-downloads]][link-downloads]
 [![Maintained by SWIS][ico-swis]][link-swis]
 
-This PHPStan error formatter will add annotations in Bitbucket, for example in pull requests, similar to the built-in GitHub formatting.
+Helper classes for Bitbucket reports.
 
 ## Installation
 
 Via Composer
 
 ```bash
-composer require --dev swisnl/phpstan-bitbucket
+composer require swisnl/bitbucket-reports
 ```
-
-If you also have [phpstan/extension-installer](https://github.com/phpstan/extension-installer) installed, then you're all set!
-
-<details>
-  <summary>Manual installation</summary>
-
-If you don't want to use `phpstan/extension-installer`, include extension.neon in your project's PHPStan config:
-
-```neon
-includes:
-    - vendor/swisnl/phpstan-bitbucket/extension.neon
-```
-</details>
 
 ## Usage
 
-To use this custom error formatter you need to run PHPStan with `--error-format=bitbucket` option. For example:
-```shell
-vendor/bin/phpstan analyse src -l8 --error-format=bitbucket
-```
-
-## Screenshots
-
-![Annotations](img/annotations.png)
-![Report](img/report.png)
+This is a collection of helper classes for Bitbucket reports, used by several of our projects. Please refer to these projects for usage examples.
 
 ## Changelog
 
@@ -55,9 +34,9 @@ If you discover any security related issues, please email security@swis.nl inste
 
 ## Credits
 
-This package is a fork of [alxt/phpstan-bitbucket][link-fork] with some updates.
+This package contains files from [alxt/phpstan-bitbucket][link-fork].
 
-- [Alexander Timmermann][link-author]
+- [Jasper Zonneveld][link-author]
 - [All Contributors][link-contributors]
 
 ## License
@@ -70,16 +49,16 @@ This package is [Treeware](https://treeware.earth). If you use it in production,
 
 [SWIS][link-swis] is a web agency from Leiden, the Netherlands. We love working with open source software.
 
-[ico-version]: https://img.shields.io/packagist/v/swisnl/phpstan-bitbucket.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/swisnl/bitbucket-reports.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
 [ico-treeware]: https://img.shields.io/badge/Treeware-%F0%9F%8C%B3-lightgreen.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/swisnl/phpstan-bitbucket.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/swisnl/bitbucket-reports.svg?style=flat-square
 [ico-swis]: https://img.shields.io/badge/%F0%9F%9A%80-maintained%20by%20SWIS-%230737A9.svg?style=flat-square
 
-[link-packagist]: https://packagist.org/packages/swisnl/phpstan-bitbucket
-[link-downloads]: https://packagist.org/packages/swisnl/phpstan-bitbucket
-[link-treeware]: https://plant.treeware.earth/swisnl/phpstan-bitbucket
+[link-packagist]: https://packagist.org/packages/swisnl/bitbucket-reports
+[link-downloads]: https://packagist.org/packages/swisnl/bitbucket-reports
+[link-treeware]: https://plant.treeware.earth/swisnl/bitbucket-reports
 [link-fork]: https://github.com/modprobe/phpstan-bitbucket
-[link-author]: https://github.com/modprobe
+[link-author]: https://github.com/JaZo
 [link-contributors]: ../../contributors
 [link-swis]: https://www.swis.nl

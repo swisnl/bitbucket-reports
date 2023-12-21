@@ -1,16 +1,14 @@
 {
-    "name": "swisnl/phpstan-bitbucket",
-    "type": "phpstan-extension",
-    "description": "PHPStan error formatter for Bitbucket Pipeline Reports",
+    "name": "swisnl/bitbucket-reports",
+    "type": "library",
+    "description": "Helper classes for Bitbucket Pipeline Reports",
     "keywords": [
-        "phpstan",
-        "error-formatter",
         "bitbucket",
         "pipeline",
         "reports",
         "testing"
     ],
-    "homepage": "https://github.com/swisnl/phpstan-bitbucket",
+    "homepage": "https://github.com/swisnl/bitbucket-reports",
     "license": "MIT",
     "authors": [
         {
@@ -25,10 +23,9 @@
         }
     ],
     "require": {
-        "php": "^7.4|^8.0",
+        "php": "^8.0",
         "ext-json": "*",
         "guzzlehttp/guzzle": "^7.0",
-        "phpstan/phpstan": "^1.0",
         "ramsey/uuid": "^4.0"
     },
     "require-dev": {
@@ -36,18 +33,10 @@
     },
     "autoload": {
         "psr-4": {
-            "Swis\\PHPStan\\ErrorFormatter\\": "src"
-        }
-    },
-    "extra": {
-        "phpstan": {
-            "includes": [
-                "extension.neon"
-            ]
+            "Swis\\Bitbucket\\Reports\\": "src"
         }
     },
     "scripts": {
-        "analyse": "vendor/bin/phpstan analyse",
         "format": "vendor/bin/pint"
     },
     "config": {

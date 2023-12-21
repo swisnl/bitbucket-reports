@@ -1,6 +1,8 @@
 <?php
 
-namespace Swis\PHPStan\ErrorFormatter;
+declare(strict_types=1);
+
+namespace Swis\Bitbucket\Reports;
 
 class BitbucketConfig
 {
