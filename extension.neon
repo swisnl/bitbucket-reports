@@ -1,3 +1,0 @@
-services:
-    errorFormatter.bitbucket:
-        class: Swis\PHPStan\ErrorFormatter\BitbucketErrorFormatter
