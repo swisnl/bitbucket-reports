@@ -18,6 +18,10 @@ class BitbucketApiClient
 
     private const PROXY_URL = 'http://localhost:29418';
 
+    private const SUMMARY_MAX_LENGTH = 450;
+
+    private const SUMMARY_TRUNCATE_SUFFIX = ' (truncated...)';
+
     private Client $httpClient;
 
     private ParentDirectoryRelativePathHelper $relativePathHelper;
@@ -64,7 +68,7 @@ class BitbucketApiClient
     ): UuidInterface {
         $payload = [
             'annotation_type' => 'BUG',
-            'summary' => $summary,
+            'summary' => $this->truncateSummary($summary),
         ];
 
         if ($filePath !== null) {
@@ -112,5 +116,14 @@ class BitbucketApiClient
     private function buildAnnotationName(): string
     {
         return BitbucketConfig::repoSlug().'-annotation-'.Uuid::uuid4()->toString();
+    }
+
+    private function truncateSummary(string $summary): string
+    {
+        if (strlen($summary) > self::SUMMARY_MAX_LENGTH) {
+            return substr($summary, 0, self::SUMMARY_MAX_LENGTH - strlen(self::SUMMARY_TRUNCATE_SUFFIX)).self::SUMMARY_TRUNCATE_SUFFIX;
+        }
+
+        return $summary;
     }
 }

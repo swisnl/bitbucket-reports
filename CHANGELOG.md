@@ -6,7 +6,9 @@ Updates should follow the [Keep a CHANGELOG](https://keepachangelog.com/) princi
 
 ## [Unreleased]
 
-- Nothing
+### Fixed
+
+- Truncate annotation summary to max length allowed by Bitbucket.
 
 ## [0.1.0] - 2023-12-21
 
